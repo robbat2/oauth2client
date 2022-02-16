@@ -230,7 +230,7 @@ import importlib
 
 import django.conf
 from django.core import exceptions
-from django.core import urlresolvers
+import django.urls as urlresolvers
 from six.moves.urllib import parse
 
 from oauth2client import clientsecrets
