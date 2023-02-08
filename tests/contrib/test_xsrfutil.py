@@ -54,7 +54,8 @@ class Test_generate_token(unittest.TestCase):
                                             TEST_USER_ID_1,
                                             action_id=TEST_ACTION_ID_1,
                                             when=TEST_TIME)
-            hmac.new.assert_called_once_with(TEST_KEY)
+            hmac.new.assert_called_once_with(TEST_KEY,
+                                             digestmod='MD5')
             digester.digest.assert_called_once_with()
 
             expected_digest_calls = [
@@ -87,7 +88,8 @@ class Test_generate_token(unittest.TestCase):
                                                 TEST_USER_ID_1,
                                                 action_id=TEST_ACTION_ID_1)
 
-                hmac.new.assert_called_once_with(TEST_KEY)
+                hmac.new.assert_called_once_with(TEST_KEY,
+                                                 digestmod='MD5')
                 time.time.assert_called_once_with()
                 digester.digest.assert_called_once_with()
 

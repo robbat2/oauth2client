@@ -44,7 +44,7 @@ def generate_token(key, user_id, action_id='', when=None):
     Returns:
         A string XSRF protection token.
     """
-    digester = hmac.new(_helpers._to_bytes(key, encoding='utf-8'))
+    digester = hmac.new(_helpers._to_bytes(key, encoding='utf-8'), digestmod='MD5')
     digester.update(_helpers._to_bytes(str(user_id), encoding='utf-8'))
     digester.update(DELIMITER)
     digester.update(_helpers._to_bytes(action_id, encoding='utf-8'))
