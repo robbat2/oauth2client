@@ -136,7 +136,7 @@ def positional(max_positional_args):
     if isinstance(max_positional_args, six.integer_types):
         return positional_decorator
     else:
-        args, _, _, defaults = inspect.getargspec(max_positional_args)
+        args, _varargs, _varkw, defaults, _kwonlyargs, _kwonlydefaults, _annotations = inspect.getfullargspec(max_positional_args)
         return positional(len(args) - len(defaults))(max_positional_args)
 
 
