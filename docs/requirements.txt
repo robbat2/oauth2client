@@ -2,7 +2,7 @@ django
 flask
 keyring
 mock
-pycrypto>=2.6
+pycryptodome>=2.6
 pyopenssl>=0.14
 python-gflags
 pyyaml
