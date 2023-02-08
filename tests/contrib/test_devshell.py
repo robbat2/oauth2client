@@ -205,7 +205,7 @@ class DevshellCredentialsTests(unittest.TestCase):
     def test_no_refresh_token(self):
         with _AuthReferenceServer():
             creds = devshell.DevshellCredentials()
-            self.assertEquals(None, creds.refresh_token)
+            self.assertEqual(None, creds.refresh_token)
 
     @mock.patch('oauth2client.client._UTCNOW')
     def test_reads_credentials(self, utcnow):

@@ -571,7 +571,7 @@ class JWTAccessCredentialsTests(unittest.TestCase):
         utcnow.return_value = T3_DATE
         transport.request(http, self.url)
         token_2 = self.jwt.access_token
-        self.assertEquals(self.jwt.token_expiry, T3_EXPIRY_DATE)
+        self.assertEqual(self.jwt.token_expiry, T3_EXPIRY_DATE)
         self.assertNotEqual(token_1, token_2)
 
         # Verify mocks.
@@ -615,7 +615,7 @@ class JWTAccessCredentialsTests(unittest.TestCase):
 
         utcnow.return_value = T2_DATE
         response, _ = transport.request(http, self.url)
-        self.assertEquals(response.status, http_client.OK)
+        self.assertEqual(response.status, http_client.OK)
         token_2 = self.jwt.access_token
         # Check the 401 forced a new token
         self.assertNotEqual(token_1, token_2)
@@ -654,5 +654,5 @@ class JWTAccessCredentialsTests(unittest.TestCase):
         utcnow.return_value = T2_DATE
         self.jwt.refresh(None)
         token_2 = self.jwt.access_token
-        self.assertEquals(self.jwt.token_expiry, T2_EXPIRY_DATE)
+        self.assertEqual(self.jwt.token_expiry, T2_EXPIRY_DATE)
         self.assertNotEqual(token_1, token_2)

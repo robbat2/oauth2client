@@ -215,8 +215,8 @@ class OAuth2CredentialsTests(unittest.TestCase):
                 clientsecrets.InvalidClientSecretsError) as exc_manager:
             clientsecrets._loadfile(NONEXISTENT_FILE)
 
-        self.assertEquals(exc_manager.exception.args[1], NONEXISTENT_FILE)
-        self.assertEquals(exc_manager.exception.args[3], errno.ENOENT)
+        self.assertEqual(exc_manager.exception.args[1], NONEXISTENT_FILE)
+        self.assertEqual(exc_manager.exception.args[3], errno.ENOENT)
 
 
 class CachedClientsecretsTests(unittest.TestCase):

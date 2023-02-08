@@ -104,7 +104,7 @@ class KeyringStorageTests(unittest.TestCase):
                                autospec=True) as get_password:
             store = keyring_storage.Storage('my_unit_test', 'me')
             credentials = store.get()
-            self.assertEquals(None, credentials)
+            self.assertEqual(None, credentials)
             get_password.assert_called_once_with('my_unit_test', 'me')
 
     def test_get_with_malformed_json_credentials_stored(self):
@@ -113,7 +113,7 @@ class KeyringStorageTests(unittest.TestCase):
                                autospec=True) as get_password:
             store = keyring_storage.Storage('my_unit_test', 'me')
             credentials = store.get()
-            self.assertEquals(None, credentials)
+            self.assertEqual(None, credentials)
             get_password.assert_called_once_with('my_unit_test', 'me')
 
     def test_get_and_set_with_json_credentials_stored(self):
@@ -139,7 +139,7 @@ class KeyringStorageTests(unittest.TestCase):
                                    return_value=None,
                                    autospec=True) as set_password:
                 store = keyring_storage.Storage('my_unit_test', 'me')
-                self.assertEquals(None, store.get())
+                self.assertEqual(None, store.get())
 
                 store.put(credentials)
 

@@ -122,9 +122,9 @@ class OAuth2ClientFileTests(unittest.TestCase):
         with open(FILENAME) as credentials_file:
             data = json.load(credentials_file)
 
-        self.assertEquals(data['access_token'], 'foo')
-        self.assertEquals(data['_class'], 'OAuth2Credentials')
-        self.assertEquals(data['_module'], client.OAuth2Credentials.__module__)
+        self.assertEqual(data['access_token'], 'foo')
+        self.assertEqual(data['_class'], 'OAuth2Credentials')
+        self.assertEqual(data['_module'], client.OAuth2Credentials.__module__)
 
     def test_token_refresh_store_expired(self):
         expiration = (datetime.datetime.utcnow() -
@@ -144,7 +144,7 @@ class OAuth2ClientFileTests(unittest.TestCase):
         http = http_mock.HttpMock(data=response_content)
 
         credentials._refresh(http)
-        self.assertEquals(credentials.access_token, access_token)
+        self.assertEqual(credentials.access_token, access_token)
 
         # Verify mocks.
         self.assertEqual(http.requests, 1)
@@ -207,7 +207,7 @@ class OAuth2ClientFileTests(unittest.TestCase):
         storage.put(new_cred)
 
         credentials._refresh(None)
-        self.assertEquals(credentials.access_token, 'bar')
+        self.assertEqual(credentials.access_token, 'bar')
 
     def test_token_refresh_stream_body(self):
         expiration = (datetime.datetime.utcnow() +
@@ -263,10 +263,10 @@ class OAuth2ClientFileTests(unittest.TestCase):
         credentials = storage.get()
 
         self.assertIsNotNone(credentials)
-        self.assertEquals('foo', credentials.access_token)
+        self.assertEqual('foo', credentials.access_token)
 
         self.assertTrue(os.path.exists(FILENAME))
 
         if os.name == 'posix':  # pragma: NO COVER
             mode = os.stat(FILENAME).st_mode
-            self.assertEquals('0o600', oct(stat.S_IMODE(mode)))
+            self.assertEqual('0o600', oct(stat.S_IMODE(mode)))
